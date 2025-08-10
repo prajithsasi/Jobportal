@@ -43,7 +43,7 @@ const Hero = () => {
           </div>
 
           {/* Location */}
-          <div className="flex items-center gap-2 px-4 border-r border-gray-300 flex-1">
+            <div className="flex items-center gap-2 px-4 border-r border-gray-300 flex-1">
             <img
               src={assets.location_icon}
               alt="location"
