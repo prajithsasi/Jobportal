@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="bg-gradient-to-r from-purple-800 to-purple-950 text-white py-16 text-center mx-2 rounded-xl">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">
-          Over 10,000+ jobs to apply
+          Your Dream JOb Is Right Here!!
         </h2>
 
         {/* Subheading */}
