@@ -14,6 +14,8 @@ import { jobsData } from "../assets/assets";
 
     const [jobs,setJobs] = useState([])
 
+    const [showRecruiterLogin,setShowRecruiterLogin] = useState(false)
+
     //function to fetch job data
 
     const fetchJobs = async () => {
@@ -27,7 +29,7 @@ import { jobsData } from "../assets/assets";
     const value ={
       setSearchFilter,searchFilter,
       isSearched,setIsSearched,
-      jobs,setJobs
+      jobs,setJobs,showRecruiterLogin,setShowRecruiterLogin,
     }
      return (<AppContext.Provider value={value}>
         {props.children}
