@@ -1,11 +1,21 @@
-import * as Sentry from "@sentry/node";
+ import * as Sentry from "@sentry/node"
+ import {nodeProfilingIntegration } from "@sentry/profiling-node";
 
-Sentry.init({
-  dsn: "https://24d28aa4445886cd183e60b00f7484e9@o4509828845142016.ingest.us.sentry.io/4509828858511360",
-  integrations: [
-    Sentry.mongooseIntegration()
-  ],
-  sendDefaultPii: true,
+ Sentry.init({
+    dsn: "https://7684e5a0eb9b67d146635eec1c55299f@o4508408152653824.ingest.us.Sentry.io/4508400155406336",
+    integrations: [
+        nodeProfilingIntegration(),
+        Sentry.mongooseIntegration()
+
+    ],
+
+    //tracesSampleRate: 1.0,
+    
+ });
+
+ Sentry.profiler.startProfiler();
+Sentry.startSpan({
+    name: "My First Transaction"
+},() =>{
 });
-
-export default Sentry;
+ Sentry.profiler.stopProfiler();

@@ -1,33 +1,32 @@
-import './config/instrument.js';
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv/config';
-import connectDB from './config/db.js';
-import { clerkWebhooks } from './controllers/webhooks.js';
+import './config/instrument.js'
+import express from 'express'
+import cors from 'cors'
+import 'dotenv/config'
+import connectDB from './config/db.js'
+import * as Sentry from "@sentry/node"
+import {clerkWebhooks} from './controllers/webhooks.js'
 
-// Initialize express
-const app = express();
+// Initalzie Express
+const app = express()
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+//connect to db
+await connectDB()
+// middlewares
 
-// Routes
-app.get('/', (req, res) => res.send('API working'));
-app.post('/webhooks', clerkWebhooks);
 
-// Connect to DB and start server
-const startServer = async () => {
-  try {
-    await connectDB();
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (err) {
-    console.error('Database connection failed:', err.message);
-    process.exit(1);
-  }
-};
+app.use(cors())
+app.use(express.json())
 
-startServer();
+//routes
+app.get('/',(req,res) => res.send('API Working'))
+app.get("/debug-sentry", function mainHandler(req,res){
+    throw new Error("MY first sentry error mamey");
+});
+app.post('/webhooks',clerkWebhooks)
+const PORT = process.env.PORT || 5000
+
+Sentry.setupExpressErrorHandler(app);
+
+app.listen(PORT,() =>{
+    console.log(`Server is running on port ${PORT}`)
+})

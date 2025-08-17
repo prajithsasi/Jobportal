@@ -8,7 +8,7 @@ import { AppContext } from "./context/AppContext";
 import Dashboard from "./pages/Dashboard";
 import AddJob from "./pages/AddJob";
 import ViewApplications from "./pages/ViewApplications";
-import ManageJobs from "./pages/ManageJobs";
+import ManageJobs from "./pages/ManageJobs.jsx";
 import 'quill/dist/quill.snow.css';
 
 const App = () => {
